@@ -23,8 +23,9 @@ app.get('/fruit', async(req, res) => {
     )
 });
 
-
-
+app.get('/fruit/new', (req, res) => {
+    res.render('./fruits/new.ejs')
+})
 
 const PORT = process.env.PORT;
 
