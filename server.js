@@ -5,6 +5,7 @@ const fruitRouter = require('./controllers/fruit');
 
 // middleware
 app.use(express.static("public"))
+app.use(express.urlencoded())
 app.use("/fruit", fruitRouter)
 
 const PORT = process.env.PORT;
