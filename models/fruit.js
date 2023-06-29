@@ -1,12 +1,13 @@
-const { Schema, model }  = require('./connection');
+const mongoose = require('./connection');
 
-
-const fruitSchema = new Schema({
+// schema which will go into model
+const fruitSchema = new mongoose.Schema({
     name: String,
-    color: String,
+    color: String, 
     readyToEat: Boolean
 });
 
-const Fruit = model('fruit', fruitSchema)
+// fruit model
+const Fruit = mongoose.model('fruit', fruitSchema);
 
-module.exports = Fruit
+module.exports = Fruit;
