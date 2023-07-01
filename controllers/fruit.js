@@ -16,7 +16,7 @@ router.use((req, res, next) => {
 
 //controllers
 router.get('/', async (req, res) => {
-    const allFruits = await Fruit.find({})
+    const allFruits = await Fruit.find({username: req.session.username})
     res.render(
         'fruits/index.ejs',
         { fruits: allFruits }
@@ -60,7 +60,7 @@ router.post('/', async (req, res) => {
     //     readyToEat: true,
     //    username: req.session.user
     // }
-    
+
     await Fruit.create(req.body);
     res.redirect('/fruit');
 })
