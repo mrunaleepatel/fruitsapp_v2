@@ -16,10 +16,10 @@ router.use((req, res, next) => {
 
 //controllers
 router.get('/', async (req, res) => {
-    const allFruits = await Fruit.find({username: req.session.username})
+    const allFruits = await Fruit.find({ username: req.session.username })
     res.render(
         'fruits/index.ejs',
-        { fruits: allFruits }
+        { fruits: allFruits, user: req.session.username }
     )
 });
 
