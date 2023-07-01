@@ -5,6 +5,15 @@ const Fruit = require('../models/fruit');
 // as app.use('/fruits', FruitRouter)
 const router = express.Router();
 
+// middleware
+router.use((req, res, next) => {
+    if(req.session.logginIn){
+        next();
+    } else {
+        res.redirect('/user/login')
+    }
+})
+
 //controllers
 router.get('/', async (req, res) => {
     const allFruits = await Fruit.find({})
@@ -42,7 +51,14 @@ router.post('/', async (req, res) => {
     // {
     //     name: 'mango',
     //     color: 'green',
-    //     readyToEat: true
+    //     readyToEat: true,
+    // }
+    req.body.username = req.session.username;
+    // {
+    //     name: 'mango',
+    //     color: 'green',
+    //     readyToEat: true,
+    //    username: req.session.user
     // }
     
     await Fruit.create(req.body);
